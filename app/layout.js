@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import { ThemeProvider } from "@/components/theme-provider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,7 +22,21 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/*header*/}
+          <main classname="min-h-screen">{children}</main>
+          {/*footer*/}
+          <footer>
+            <div>
+              <p>Made with ❤️ by RoadsideCoder</p>
+            </div>
+          </footer>
+        </ThemeProvider>
       </body>
     </html>
   );
